@@ -1,0 +1,57 @@
+# GeoIP Cron Job
+
+This Node.js application periodically fetches GeoIP information and posts it to a PostgreSQL database. It uses a cron job to schedule regular updates of geographical information for a specified node.
+
+## Features
+
+- Fetches GeoIP information from a specified URL
+- Schedules data retrieval and posting using node-cron
+- Posts data to a PostgreSQL database using a REST API
+- Includes node name, latitude, longitude, and update time in the posted data
+- Uses environment variables for configuration
+
+## Prerequisites
+
+- Node.js
+- npm or yarn
+- Access to a GeoIP information service
+- PostgreSQL database with a REST API endpoint
+
+## Installation
+
+1. Clone the repository:
+Adjust the values according to your specific setup.
+
+GEO_INFO_URL=https://your-geoip-service.com/api
+POST_URL=https://your-postgresql-api.com/endpoint
+CRON_TIME=*/5 * * * *
+TOKEN=your_authorization_token
+
+
+## Usage
+
+Run the application:
+npm run
+
+The application will start and run according to the specified cron schedule.
+
+## How it works
+
+1. The application uses `node-cron` to schedule a job based on the `CRON_TIME` environment variable.
+2. When the job runs, it fetches GeoIP information from the specified `GEO_INFO_URL`.
+3. The retrieved data is processed to extract latitude and longitude.
+4. Additional information (node name, update time) is added to the data.
+5. The complete dataset is then posted to the `POST_URL` with the specified authorization token.
+6. The process repeats according to the cron schedule.
+
+## Error Handling
+
+If any errors occur during the execution of the cron job, they will be logged to the console.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
